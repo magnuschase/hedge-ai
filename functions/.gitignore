@@ -11,3 +11,4 @@ node_modules/
 # Firestore logs
 firestore-debug.log
 ui-debug.log
+firebase-debug.log

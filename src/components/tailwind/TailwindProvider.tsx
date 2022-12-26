@@ -9,7 +9,7 @@ import { TailwindProvider, Utilities } from "tailwind-rn"
 
 type PropsType = {
 	utilities: Utilities,
-	colorScheme?: ColorSchemeName;
+	colorScheme?: ColorSchemeName
 	children: React.ReactNode
 }
 const Provider = TailwindProvider as React.FC<PropsType>
