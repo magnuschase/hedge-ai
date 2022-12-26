@@ -34,7 +34,7 @@ const App: React.FC = () => {
 		...DefaultTheme,
 		colors: {
 			...DefaultTheme.colors,
-			primary: getColor('green', 500)
+			primary: getColor('green', 900)
 		}
 	}
 

@@ -12,7 +12,11 @@ export const createUserProfile = functions.auth
 	.user()
 	.onCreate(async (user: UserRecord) => {
 		const userData = {
-			customModels: [] as ModelConfig[]
+			customModel: {
+				name: '',
+				description: '',
+				labelMap: []
+			} as ModelConfig
 		} as User
 		const userDoc = db.collection('users').doc(user.uid)
 		await userDoc.set(userData)
