@@ -32,9 +32,14 @@ const App: React.FC = () => {
 
 	const NavigationTheme = {
 		...DefaultTheme,
+		dark: true,
 		colors: {
 			...DefaultTheme.colors,
-			primary: getColor('green', 900)
+			primary: getColor('green', 900),
+			card: getColor('gray', 800),
+			text: getColor('slate', 50),
+			border: getColor('slate', 800),
+			background: getColor('gray', 900)
 		}
 	}
 
