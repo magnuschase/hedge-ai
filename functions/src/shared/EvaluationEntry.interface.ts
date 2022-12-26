@@ -1,4 +1,4 @@
-import { Model } from "./enums/Model.enum"
+import { Model } from './enums/Model.enum'
 
 export interface EvaluationEntry {
 	timestamp: number // UNIX timestamp, in ms

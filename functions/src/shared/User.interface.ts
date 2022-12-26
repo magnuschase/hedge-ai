@@ -1,5 +1,5 @@
-import { ModelConfig } from "./ModelConfig.interface"
+import { ModelConfig } from './ModelConfig.interface'
 
 export interface User {
-	customModel: ModelConfig[]
+	customModels: ModelConfig[]
 }
