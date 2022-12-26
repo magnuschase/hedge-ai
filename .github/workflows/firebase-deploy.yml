@@ -1,0 +1,29 @@
+name: Firebase Functions deploy
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "functions/**"
+
+  workflow_dispatch:
+
+jobs:
+  main:
+    name: Firebase Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: yarn
+      - name: 📦 Install packages
+        run: |
+          cd functions && yarn
+      - name: GitHub Action for Firebase
+        uses: w9jds/firebase-action@v2.0.0
+        with:
+          args: deploy --only functions
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
