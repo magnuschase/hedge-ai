@@ -7,10 +7,13 @@ import getColor from './src/helpers/getColor'
 import utilities from './tailwind.json'
 import HomeScreen from './src/screens/HomeScreen'
 import store from './src/store'
+import { useUserObserver } from './src/hooks/useUserObserver'
 
 const Stack = createStackNavigator()
 
-export default function App() {
+const App: React.FC = () => {
+	useUserObserver()
+
 	const NavigationTheme = {
 		...DefaultTheme,
 		colors: {
@@ -21,13 +24,21 @@ export default function App() {
 
   return (
 		<TailwindProvider utilities={utilities}>
-			<Provider store={store}>
 				<NavigationContainer theme={NavigationTheme}>
 					<Stack.Navigator>
 						<Stack.Screen name="Home" component={HomeScreen} />
 					</Stack.Navigator>
 				</NavigationContainer>
-			</Provider>
 		</TailwindProvider>
   )
 }
+
+const AppWrapper = () => {
+	return (
+		<Provider store={store}>
+			<App />
+		</Provider>
+	)
+}
+
+export default AppWrapper
