@@ -19,6 +19,8 @@ import HomeScreen from './src/screens/HomeScreen'
 import store, { RootState } from './src/store'
 import { useUserObserver } from './src/hooks/useUserObserver'
 import GetStartedScreen from './src/screens/GetStartedScreen'
+import CustomModelScreen from './src/screens/CustomModelScreen'
+import HistoryScreen from './src/screens/HistoryScreen'
 
 const Stack = createStackNavigator()
 
@@ -77,6 +79,14 @@ const App: React.FC = () => {
 									header: () => null
 								}
 							}
+						/>
+						<Stack.Screen
+							name='Custom model'
+							component={CustomModelScreen}
+						/>
+						<Stack.Screen
+							name='Evaluation history'
+							component={HistoryScreen}
 						/>
 					</Stack.Navigator>
 				</NavigationContainer>
