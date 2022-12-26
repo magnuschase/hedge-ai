@@ -1,0 +1,22 @@
+name: Functions QA
+on:
+  pull_request:
+    paths: ["functions/**"]
+    branches: [main]
+
+jobs:
+  typescript-check:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16.x
+          cache: yarn
+      - name: 📦 Install Packages
+        run: cd functions/ && yarn
+      - name: 📖 Typecheck
+        run: cd functions/ && yarn build
+      - name: 🔧 ESLint Check
+        run: cd functions/ && yarn lint

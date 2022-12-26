@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { EvaluationEntry } from '../../types/EvaluationEntry.interface'
+import { EvaluationEntry } from '../../../functions/src/shared/EvaluationEntry.interface'
 
 interface HistoryState {
 	evaluations: EvaluationEntry[]
