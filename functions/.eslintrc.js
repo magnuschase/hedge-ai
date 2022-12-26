@@ -29,6 +29,9 @@ module.exports = {
     "import/no-unresolved": 0,
 		"object-curly-spacing": ["error", "always"],
 		"semi": ["error", "never"],
-		"no-tabs": "off"
+		"no-tabs": "off",
+		"indent": ["error", "tab"],
+		"comma-dangle": ["error", "never"],
+		"quotes": ["error", "single"],
   },
 }
