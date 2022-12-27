@@ -1,10 +1,11 @@
-import { MotiView } from 'moti'
-import React, { useMemo } from 'react'
+import React, { useMemo, useState } from 'react'
+import { useTailwind } from 'tailwind-rn'
+import { SvgProps } from 'react-native-svg'
 import RegularText from './texts/RegularText'
 import { ModelConfig } from '../../functions/src/shared/ModelConfig.interface'
-import { useTailwind } from 'tailwind-rn'
 import getColor from '../helpers/getColor'
-import { SvgProps } from 'react-native-svg'
+import { TouchableOpacity } from 'react-native'
+import ModelBottomSheet from './ModelBottomSheet'
 
 interface ModelCardPayload extends ModelConfig {
 	index: number,
@@ -21,6 +22,7 @@ const ModelCard: React.FC<ModelCardPayload> = ({
 	index
 }) => {
 	const tailwind = useTailwind()
+	const [isVisible, setIsVisible] = useState(false)
 
 	const color = useMemo(() => {
 		switch(index) {
@@ -45,43 +47,45 @@ const ModelCard: React.FC<ModelCardPayload> = ({
 	}, [color])
 
 	return (
-		<MotiView
-			from={{
-				shadowOpacity: 0.5
-			}}
-			animate={{
-				shadowOpacity: 1,
-			}}
-			transition={{
-				loop: true,
-				type: 'timing',
-				duration: 1000,
-				delay: 500,
-			}}
-			style={[
-				tailwind(`
-					mb-4 rounded-lg w-[40%] flex flex-col items-center
-					mx-[5%] justify-center h-auto border-2
-				`),
-				{
-					aspectRatio: 1,
-					borderColor: darkerColor,
-					shadowColor: darkerColor,
-					shadowRadius: 5,
-				},
-			]}
-		>
-			<IconComponent fill={darkerColor}/>
-
-			<RegularText
+		<>
+			<TouchableOpacity
+				onPress={() => setIsVisible(!isVisible)}
 				style={[
-					tailwind('font-bold pt-4'),
-					{ color: darkerColor }
+					tailwind(`
+						mb-4 rounded-lg w-[40%] flex flex-col items-center
+						mx-[5%] justify-center h-auto border-2
+					`),
+					{
+						aspectRatio: 1,
+						shadowOpacity: 1,
+						borderColor: darkerColor,
+						shadowColor: darkerColor,
+						shadowRadius: 5,
+					},
 				]}
 			>
-				{ name }
-			</RegularText>		
-		</MotiView>
+				<IconComponent fill={darkerColor}/>
+
+				<RegularText
+					style={[
+						tailwind('font-bold pt-4'),
+						{ color: darkerColor }
+					]}
+				>
+					{ name }
+				</RegularText>	
+			</TouchableOpacity>
+			
+			<ModelBottomSheet 
+				isVisible={isVisible}
+				onDismiss={() => setIsVisible(false)}
+				name={name}
+				description={description}
+				fileName={fileName}
+				path={path}
+				labelMap={labelMap}
+			/>
+		</>
 	)
 }
 

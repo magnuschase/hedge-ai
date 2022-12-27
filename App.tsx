@@ -12,6 +12,7 @@ import {
 	Lato_900Black
 } from '@expo-google-fonts/lato'
 import * as SplashScreen from 'expo-splash-screen'
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import TailwindProvider from './src/components/tailwind/TailwindProvider'
 import getColor from './src/helpers/getColor'
 import utilities from './tailwind.json'
@@ -22,6 +23,9 @@ import GetStartedScreen from './src/screens/GetStartedScreen'
 import CustomModelScreen from './src/screens/CustomModelScreen'
 import HistoryScreen from './src/screens/HistoryScreen'
 import BottomNavigation from './src/components/BottomNavigation'
+import InfoScreen from './src/screens/InfoScreen'
+import CameraScreen from './src/screens/CameraScreen'
+import UploadScreen from './src/screens/UploadScreen'
 
 const Stack = createStackNavigator()
 
@@ -69,6 +73,7 @@ const App: React.FC = () => {
 
   return (
 		<TailwindProvider utilities={utilities}>
+			<BottomSheetModalProvider>
 				<NavigationContainer
 					onReady={onLayoutRootView}
 					theme={NavigationTheme}
@@ -102,14 +107,29 @@ const App: React.FC = () => {
 						/>
 						<Stack.Screen
 							name='Info'
-							component={HomeScreen}
+							component={InfoScreen}
 							options={{
 								title: 'Informations'
+							}}
+						/>
+						<Stack.Screen
+							name='CameraScreen'
+							component={CameraScreen}
+							options={{
+								title: 'Camera'
+							}}
+						/>
+						<Stack.Screen
+							name='UploadScreen'
+							component={UploadScreen}
+							options={{
+								title: 'Upload file'
 							}}
 						/>
 					</Stack.Navigator>
 					<BottomNavigation/>
 				</NavigationContainer>
+			</BottomSheetModalProvider>
 		</TailwindProvider>
   )
 }
