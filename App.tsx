@@ -28,7 +28,7 @@ SplashScreen.preventAutoHideAsync()
 
 const App: React.FC = () => {
 	const { firebaseUser } = useSelector((state: RootState) => state.user)
-	useUserObserver()
+	const { firebaseLoaded } = useUserObserver()
 
 	const NavigationTheme = {
 		...DefaultTheme,
@@ -52,7 +52,7 @@ const App: React.FC = () => {
 	})
 
 	const onLayoutRootView = useCallback(async () => {
-		if (fontsLoaded) {
+		if (fontsLoaded && firebaseLoaded) {
 			// This tells the splash screen to hide immediately! If we call this after
 			// `setAppIsReady`, then we may see a blank screen while the app is
 			// loading its initial state and rendering its first pixels. So instead,
@@ -60,9 +60,9 @@ const App: React.FC = () => {
 			// performed layout.
 			await SplashScreen.hideAsync()
 		}
-	}, [fontsLoaded])
+	}, [fontsLoaded, firebaseLoaded])
 
-	if (!fontsLoaded) {
+	if (!fontsLoaded || !firebaseLoaded) {
 		return null
 	}
 
