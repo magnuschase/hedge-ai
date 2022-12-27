@@ -214,6 +214,22 @@
 			"borderBottomLeftRadius": 6
 		}
 	},
+	"rounded-xl": {
+		"style": {
+			"borderTopLeftRadius": 12,
+			"borderTopRightRadius": 12,
+			"borderBottomRightRadius": 12,
+			"borderBottomLeftRadius": 12
+		}
+	},
+	"rounded-2xl": {
+		"style": {
+			"borderTopLeftRadius": 16,
+			"borderTopRightRadius": 16,
+			"borderBottomRightRadius": 16,
+			"borderBottomLeftRadius": 16
+		}
+	},
 	"rounded-b-2xl": {
 		"style": {
 			"borderBottomRightRadius": 16,
@@ -234,6 +250,24 @@
 			"borderRightWidth": 2,
 			"borderBottomWidth": 2,
 			"borderLeftWidth": 2
+		}
+	},
+	"border-green-900": {
+		"style": {
+			"--tw-border-opacity": 1,
+			"borderTopColor": "rgb(20 83 45 / var(--tw-border-opacity))",
+			"borderRightColor": "rgb(20 83 45 / var(--tw-border-opacity))",
+			"borderBottomColor": "rgb(20 83 45 / var(--tw-border-opacity))",
+			"borderLeftColor": "rgb(20 83 45 / var(--tw-border-opacity))"
+		}
+	},
+	"border-green-500": {
+		"style": {
+			"--tw-border-opacity": 1,
+			"borderTopColor": "rgb(34 197 94 / var(--tw-border-opacity))",
+			"borderRightColor": "rgb(34 197 94 / var(--tw-border-opacity))",
+			"borderBottomColor": "rgb(34 197 94 / var(--tw-border-opacity))",
+			"borderLeftColor": "rgb(34 197 94 / var(--tw-border-opacity))"
 		}
 	},
 	"bg-gray-800": {
@@ -374,6 +408,18 @@
 			"paddingRight": 12
 		}
 	},
+	"py-2": {
+		"style": {
+			"paddingTop": 8,
+			"paddingBottom": 8
+		}
+	},
+	"py-3": {
+		"style": {
+			"paddingTop": 12,
+			"paddingBottom": 12
+		}
+	},
 	"pb-2": {
 		"style": {
 			"paddingBottom": 8
@@ -412,6 +458,11 @@
 	"pr-4": {
 		"style": {
 			"paddingRight": 16
+		}
+	},
+	"text-left": {
+		"style": {
+			"textAlign": "left"
 		}
 	},
 	"text-center": {
@@ -538,6 +589,18 @@
 		"style": {
 			"--tw-text-opacity": 1,
 			"color": "rgb(226 232 240 / var(--tw-text-opacity))"
+		}
+	},
+	"text-green-900": {
+		"style": {
+			"--tw-text-opacity": 1,
+			"color": "rgb(20 83 45 / var(--tw-text-opacity))"
+		}
+	},
+	"text-green-500": {
+		"style": {
+			"--tw-text-opacity": 1,
+			"color": "rgb(34 197 94 / var(--tw-text-opacity))"
 		}
 	},
 	"underline": {

@@ -24,6 +24,8 @@ import CustomModelScreen from './src/screens/CustomModelScreen'
 import HistoryScreen from './src/screens/HistoryScreen'
 import BottomNavigation from './src/components/BottomNavigation'
 import InfoScreen from './src/screens/InfoScreen'
+import CameraScreen from './src/screens/CameraScreen'
+import UploadScreen from './src/screens/UploadScreen'
 
 const Stack = createStackNavigator()
 
@@ -108,6 +110,20 @@ const App: React.FC = () => {
 							component={InfoScreen}
 							options={{
 								title: 'Informations'
+							}}
+						/>
+						<Stack.Screen
+							name='CameraScreen'
+							component={CameraScreen}
+							options={{
+								title: 'Camera'
+							}}
+						/>
+						<Stack.Screen
+							name='UploadScreen'
+							component={UploadScreen}
+							options={{
+								title: 'Upload file'
 							}}
 						/>
 					</Stack.Navigator>
