@@ -23,6 +23,7 @@ import GetStartedScreen from './src/screens/GetStartedScreen'
 import CustomModelScreen from './src/screens/CustomModelScreen'
 import HistoryScreen from './src/screens/HistoryScreen'
 import BottomNavigation from './src/components/BottomNavigation'
+import InfoScreen from './src/screens/InfoScreen'
 
 const Stack = createStackNavigator()
 
@@ -104,7 +105,7 @@ const App: React.FC = () => {
 						/>
 						<Stack.Screen
 							name='Info'
-							component={HomeScreen}
+							component={InfoScreen}
 							options={{
 								title: 'Informations'
 							}}

@@ -40,7 +40,11 @@ const HomeScreen: React.FC<any> = () => {
 	return (
 		<View style={[tailwind('px-6')]}>
 			<SafeAreaView>
-				<RegularText style={[tailwind('font-thin text-3xl mb-4')]}>Choose your model!</RegularText>
+				<RegularText
+					style={[tailwind('font-thin text-slate-200 text-3xl mb-4')]}
+				>
+					Choose your model!
+				</RegularText>
 				<FlatList
 					data={CONFIG_ARR}
 					keyExtractor={(item) => item.name}
