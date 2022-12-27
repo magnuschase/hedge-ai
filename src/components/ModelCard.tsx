@@ -1,4 +1,3 @@
-import { View } from 'react-native'
 import { MotiView } from 'moti'
 import React, { useMemo } from 'react'
 import RegularText from './texts/RegularText'
@@ -81,7 +80,7 @@ const ModelCard: React.FC<ModelCardPayload> = ({
 				]}
 			>
 				{ name }
-			</RegularText>			
+			</RegularText>		
 		</MotiView>
 	)
 }
