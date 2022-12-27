@@ -12,6 +12,7 @@ import {
 	Lato_900Black
 } from '@expo-google-fonts/lato'
 import * as SplashScreen from 'expo-splash-screen'
+import { BottomSheetModalProvider } from '@gorhom/bottom-sheet'
 import TailwindProvider from './src/components/tailwind/TailwindProvider'
 import getColor from './src/helpers/getColor'
 import utilities from './tailwind.json'
@@ -69,6 +70,7 @@ const App: React.FC = () => {
 
   return (
 		<TailwindProvider utilities={utilities}>
+			<BottomSheetModalProvider>
 				<NavigationContainer
 					onReady={onLayoutRootView}
 					theme={NavigationTheme}
@@ -110,6 +112,7 @@ const App: React.FC = () => {
 					</Stack.Navigator>
 					<BottomNavigation/>
 				</NavigationContainer>
+			</BottomSheetModalProvider>
 		</TailwindProvider>
   )
 }
