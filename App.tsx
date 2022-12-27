@@ -21,6 +21,7 @@ import { useUserObserver } from './src/hooks/useUserObserver'
 import GetStartedScreen from './src/screens/GetStartedScreen'
 import CustomModelScreen from './src/screens/CustomModelScreen'
 import HistoryScreen from './src/screens/HistoryScreen'
+import BottomNavigation from './src/components/BottomNavigation'
 
 const Stack = createStackNavigator()
 
@@ -28,13 +29,18 @@ SplashScreen.preventAutoHideAsync()
 
 const App: React.FC = () => {
 	const { firebaseUser } = useSelector((state: RootState) => state.user)
-	useUserObserver()
+	const { firebaseLoaded } = useUserObserver()
 
 	const NavigationTheme = {
 		...DefaultTheme,
+		dark: true,
 		colors: {
 			...DefaultTheme.colors,
-			primary: getColor('green', 900)
+			primary: getColor('green', 900),
+			card: getColor('gray', 800),
+			text: getColor('slate', 50),
+			border: getColor('slate', 800),
+			background: getColor('gray', 900)
 		}
 	}
 
@@ -47,7 +53,7 @@ const App: React.FC = () => {
 	})
 
 	const onLayoutRootView = useCallback(async () => {
-		if (fontsLoaded) {
+		if (fontsLoaded && firebaseLoaded) {
 			// This tells the splash screen to hide immediately! If we call this after
 			// `setAppIsReady`, then we may see a blank screen while the app is
 			// loading its initial state and rendering its first pixels. So instead,
@@ -55,9 +61,9 @@ const App: React.FC = () => {
 			// performed layout.
 			await SplashScreen.hideAsync()
 		}
-	}, [fontsLoaded])
+	}, [fontsLoaded, firebaseLoaded])
 
-	if (!fontsLoaded) {
+	if (!fontsLoaded || !firebaseLoaded) {
 		return null
 	}
 
@@ -81,14 +87,28 @@ const App: React.FC = () => {
 							}
 						/>
 						<Stack.Screen
-							name='Custom model'
+							name='CustomModel'
 							component={CustomModelScreen}
+							options={{
+								title: 'Edit custom model'
+							}}
 						/>
 						<Stack.Screen
-							name='Evaluation history'
+							name='History'
 							component={HistoryScreen}
+							options={{
+								title: 'Evaluation history'
+							}}
+						/>
+						<Stack.Screen
+							name='Info'
+							component={HomeScreen}
+							options={{
+								title: 'Informations'
+							}}
 						/>
 					</Stack.Navigator>
+					<BottomNavigation/>
 				</NavigationContainer>
 		</TailwindProvider>
   )

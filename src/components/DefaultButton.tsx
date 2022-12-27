@@ -51,7 +51,7 @@ export const DefaultButton: React.FC<DefaultButtonPayload> = ({
 					isLoading ?
 					<ActivityIndicator
 						size="large"
-						color={getColor('warm-gray', 900)}
+						color={getColor('gray', 900)}
 					/> :
 					text
 				}
