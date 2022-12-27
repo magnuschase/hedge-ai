@@ -21,6 +21,7 @@ import { useUserObserver } from './src/hooks/useUserObserver'
 import GetStartedScreen from './src/screens/GetStartedScreen'
 import CustomModelScreen from './src/screens/CustomModelScreen'
 import HistoryScreen from './src/screens/HistoryScreen'
+import BottomNavigation from './src/components/BottomNavigation'
 
 const Stack = createStackNavigator()
 
@@ -86,14 +87,28 @@ const App: React.FC = () => {
 							}
 						/>
 						<Stack.Screen
-							name='Custom model'
+							name='CustomModel'
 							component={CustomModelScreen}
+							options={{
+								title: 'Edit custom model'
+							}}
 						/>
 						<Stack.Screen
-							name='Evaluation history'
+							name='History'
 							component={HistoryScreen}
+							options={{
+								title: 'Evaluation history'
+							}}
+						/>
+						<Stack.Screen
+							name='Info'
+							component={HomeScreen}
+							options={{
+								title: 'Informations'
+							}}
 						/>
 					</Stack.Navigator>
+					<BottomNavigation/>
 				</NavigationContainer>
 		</TailwindProvider>
   )
