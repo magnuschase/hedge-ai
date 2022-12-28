@@ -1,0 +1,3 @@
+[submodule "hedge-api"]
+	path = hedge-api
+	url = https://github.com/magnuschase/hedge-api.git
