@@ -42,7 +42,7 @@ const App: React.FC = () => {
 		dark: true,
 		colors: {
 			...DefaultTheme.colors,
-			primary: getColor('green', 900),
+			primary: getColor('sky', 500),
 			card: getColor('gray', 800),
 			text: getColor('slate', 50),
 			border: getColor('slate', 800),
