@@ -4,4 +4,5 @@ export interface EvaluationEntry {
 	timestamp: number // UNIX timestamp, in ms
 	model: Model, // Model used to evaluate image
 	path: string // Path to image file stored on GCS
+	status: 'pending' | 'success' | 'failure' // evaluation status
 }
