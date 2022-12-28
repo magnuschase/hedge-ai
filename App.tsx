@@ -19,6 +19,7 @@ import utilities from './tailwind.json'
 import HomeScreen from './src/screens/HomeScreen'
 import store, { RootState } from './src/store'
 import { useUserObserver } from './src/hooks/useUserObserver'
+import { useHistoryUpdates } from './src/hooks/useHistoryUpdates'
 import GetStartedScreen from './src/screens/GetStartedScreen'
 import CustomModelScreen from './src/screens/CustomModelScreen'
 import HistoryScreen from './src/screens/HistoryScreen'
@@ -34,13 +35,14 @@ SplashScreen.preventAutoHideAsync()
 const App: React.FC = () => {
 	const { firebaseUser } = useSelector((state: RootState) => state.user)
 	const { firebaseLoaded } = useUserObserver()
+	useHistoryUpdates()
 
 	const NavigationTheme = {
 		...DefaultTheme,
 		dark: true,
 		colors: {
 			...DefaultTheme.colors,
-			primary: getColor('green', 900),
+			primary: getColor('sky', 500),
 			card: getColor('gray', 800),
 			text: getColor('slate', 50),
 			border: getColor('slate', 800),

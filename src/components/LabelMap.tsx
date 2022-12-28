@@ -28,6 +28,7 @@ const LabelMap: React.FC<LabelMapPayload> = ({labelMap}) => {
 						tailwind('flex items-center justify-center mx-2 my-2 rounded-full'),
 						{ backgroundColor: COLOR_GEN_DARK.hex(label) }
 					]}
+					key={label}
 				>
 					<RegularText
 						key={index}
