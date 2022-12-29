@@ -8,7 +8,16 @@ import { EvaluationEntry } from './shared/EvaluationEntry.interface'
 import { Status } from './shared/Status.enum'
 import uploadImageAsync from './helpers/uploadImageAsync'
 
-admin.initializeApp()
+if (process.env.FIREBASE_DEBUG_MODE) {
+	const serviceAccount = require('../service_account.json')
+	admin.initializeApp({
+		credential: admin.credential.cert(serviceAccount),
+		storageBucket: 'hedgeai.appspot.com'
+	})
+} else {
+	admin.initializeApp()
+}
+
 const db = admin.firestore()
 
 // EVALUATION TRIGGER (onCreate): send a request to the evaluation function
@@ -17,7 +26,7 @@ export const evaluate = functions
 	.runWith({ memory: '1GB', timeoutSeconds: 540 })
 	.firestore
 	.document('users/{userId}/evaluations/{evaluationId}')
-	.onCreate(async (snapshot) => {
+	.onCreate(async (snapshot, context) => {
 		// Get the evaluation entry, ref and endpoint URL
 		const { imageUrl, model, type } = snapshot.data() as EvaluationEntry
 		const URL = `${functions.config().api.url}/predict`
@@ -25,15 +34,23 @@ export const evaluate = functions
 
 		try {
 			// Evaluate the image
-			const response = await axios.post(URL, {
-				imageUrl,
-				modelPath: model,
-				modelType: type
-			})
-
+			const response = await axios.post(
+				URL,
+				{
+					imageUrl,
+					modelPath: model,
+					modelType: type
+				},
+				{
+					responseType: 'arraybuffer'
+				}
+			)
 			// Upload the evaluated image to GCS
-			const { data } = response as { data: Buffer }
-			const [newImageUrl] = await uploadImageAsync(data)
+			const { data } = response
+			const [newImageUrl] = await uploadImageAsync(
+				context.params.userId || 'generic',
+				Buffer.from(data, 'binary')
+			)
 
 			// Update the evaluation entry
 			ref.update({
@@ -41,6 +58,7 @@ export const evaluate = functions
 				status: Status.SUCCESS
 			})
 		} catch (error) {
+			console.log(error)
 			ref.update({ status: Status.FAILURE })
 		}
 
@@ -55,7 +73,9 @@ export const createUserProfile = functions.auth
 			customModel: {
 				name: '',
 				description: '',
-				labelMap: []
+				labelMap: [],
+				model: '',
+				type: 'custom'
 			} as ModelConfig
 		} as User
 		const userDoc = db.collection('users').doc(user.uid)
