@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { View, FlatList } from "react-native"
 import ModelCard from "../components/ModelCard"
@@ -10,9 +10,17 @@ import AslIcon from '../components/icons/AslIcon'
 import YoloIcon from '../components/icons/YoloIcon'
 import HedgeIcon from '../components/icons/HedgeIcon'
 import NeuronIcon from '../components/icons/NeuronIcon'
+import { useSelector } from "react-redux"
+import { RootState } from "../store"
 
-const HomeScreen: React.FC<any> = () => {
+const HomeScreen: React.FC = () => {
 	const tailwind = useTailwind()
+	const { user } = useSelector((state: RootState) => state.user)
+
+	const modelCards: ModelConfig[] = useMemo(() => {
+		if (!user || !user.customModel.model) return CONFIG_ARR
+		return [...CONFIG_ARR, user.customModel]
+	}, [user, CONFIG_ARR])
 
 	const renderModelCard = ({item, index}: { item: ModelConfig, index: number}) => {
 		let icon: React.FC = NeuronIcon
@@ -46,7 +54,7 @@ const HomeScreen: React.FC<any> = () => {
 					Choose your model!
 				</RegularText>
 				<FlatList
-					data={CONFIG_ARR}
+					data={modelCards}
 					keyExtractor={(item) => item.name}
 					renderItem={(item) => renderModelCard(item)}
 					numColumns={2}

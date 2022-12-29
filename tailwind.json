@@ -360,6 +360,11 @@
 			"paddingTop": 32
 		}
 	},
+	"pt-1": {
+		"style": {
+			"paddingTop": 4
+		}
+	},
 	"text-left": {
 		"style": {
 			"textAlign": "left"
@@ -477,6 +482,12 @@
 		"style": {
 			"--tw-text-opacity": 1,
 			"color": "rgb(14 165 233 / var(--tw-text-opacity))"
+		}
+	},
+	"text-rose-500": {
+		"style": {
+			"--tw-text-opacity": 1,
+			"color": "rgb(244 63 94 / var(--tw-text-opacity))"
 		}
 	},
 	"underline": {

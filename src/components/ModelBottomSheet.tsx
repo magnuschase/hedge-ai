@@ -58,7 +58,7 @@ const ModelBottomSheet: React.FC<ModelBottomSheetPayload> = ({
 			{/* Description */}
 			<RegularText
 				style={[
-					tailwind('text-neutral-200 pt-4 text-neutral-500')
+					tailwind('pt-4 text-neutral-500')
 				]}
 			>
 				{description}
@@ -84,6 +84,18 @@ const ModelBottomSheet: React.FC<ModelBottomSheetPayload> = ({
 			>
 				Use model:
 			</RegularText>
+
+			{/* Custom model warning */}
+			{ type === 'custom' && (
+				<RegularText
+					style={[
+						tailwind('text-xs text-rose-500 pt-1')
+					]}
+				>
+					This model is a custom model you uploaded yourself. Prediction results may vary. Remember to only use models trained with YOLOv5, otherwise it may not work.
+				</RegularText>
+			)}
+
 			<NeonModalButton 
 				text='Camera'
 				onPress={() => handleButtonPress('CameraScreen')}
