@@ -24,6 +24,16 @@
 			"bottom": 0
 		}
 	},
+	"right-0": {
+		"style": {
+			"right": 0
+		}
+	},
+	"z-20": {
+		"style": {
+			"zIndex": 20
+		}
+	},
 	"my-8": {
 		"style": {
 			"marginTop": 32,
@@ -82,6 +92,16 @@
 	"mb-2": {
 		"style": {
 			"marginBottom": 8
+		}
+	},
+	"mt-1": {
+		"style": {
+			"marginTop": 4
+		}
+	},
+	"mr-4": {
+		"style": {
+			"marginRight": 16
 		}
 	},
 	"block": {
@@ -147,6 +167,11 @@
 	"h-40": {
 		"style": {
 			"height": 160
+		}
+	},
+	"h-2": {
+		"style": {
+			"height": 8
 		}
 	},
 	"w-full": {
@@ -226,6 +251,11 @@
 			"flexBasis": "0%"
 		}
 	},
+	"flex-grow": {
+		"style": {
+			"flexGrow": 1
+		}
+	},
 	"flex-row": {
 		"style": {
 			"flexDirection": "row"
@@ -241,6 +271,11 @@
 			"flexWrap": "wrap"
 		}
 	},
+	"items-start": {
+		"style": {
+			"alignItems": "flex-start"
+		}
+	},
 	"items-end": {
 		"style": {
 			"alignItems": "flex-end"
@@ -254,6 +289,11 @@
 	"justify-start": {
 		"style": {
 			"justifyContent": "flex-start"
+		}
+	},
+	"justify-end": {
+		"style": {
+			"justifyContent": "flex-end"
 		}
 	},
 	"justify-center": {
@@ -288,6 +328,14 @@
 			"borderTopRightRadius": 12,
 			"borderBottomRightRadius": 12,
 			"borderBottomLeftRadius": 12
+		}
+	},
+	"rounded-md": {
+		"style": {
+			"borderTopLeftRadius": 6,
+			"borderTopRightRadius": 6,
+			"borderBottomRightRadius": 6,
+			"borderBottomLeftRadius": 6
 		}
 	},
 	"border": {
@@ -330,6 +378,51 @@
 			"borderRightColor": "rgb(186 230 253 / var(--tw-border-opacity))",
 			"borderBottomColor": "rgb(186 230 253 / var(--tw-border-opacity))",
 			"borderLeftColor": "rgb(186 230 253 / var(--tw-border-opacity))"
+		}
+	},
+	"border-slate-500": {
+		"style": {
+			"--tw-border-opacity": 1,
+			"borderTopColor": "rgb(100 116 139 / var(--tw-border-opacity))",
+			"borderRightColor": "rgb(100 116 139 / var(--tw-border-opacity))",
+			"borderBottomColor": "rgb(100 116 139 / var(--tw-border-opacity))",
+			"borderLeftColor": "rgb(100 116 139 / var(--tw-border-opacity))"
+		}
+	},
+	"border-slate-800": {
+		"style": {
+			"--tw-border-opacity": 1,
+			"borderTopColor": "rgb(30 41 59 / var(--tw-border-opacity))",
+			"borderRightColor": "rgb(30 41 59 / var(--tw-border-opacity))",
+			"borderBottomColor": "rgb(30 41 59 / var(--tw-border-opacity))",
+			"borderLeftColor": "rgb(30 41 59 / var(--tw-border-opacity))"
+		}
+	},
+	"border-rose-800": {
+		"style": {
+			"--tw-border-opacity": 1,
+			"borderTopColor": "rgb(159 18 57 / var(--tw-border-opacity))",
+			"borderRightColor": "rgb(159 18 57 / var(--tw-border-opacity))",
+			"borderBottomColor": "rgb(159 18 57 / var(--tw-border-opacity))",
+			"borderLeftColor": "rgb(159 18 57 / var(--tw-border-opacity))"
+		}
+	},
+	"border-rose-500": {
+		"style": {
+			"--tw-border-opacity": 1,
+			"borderTopColor": "rgb(244 63 94 / var(--tw-border-opacity))",
+			"borderRightColor": "rgb(244 63 94 / var(--tw-border-opacity))",
+			"borderBottomColor": "rgb(244 63 94 / var(--tw-border-opacity))",
+			"borderLeftColor": "rgb(244 63 94 / var(--tw-border-opacity))"
+		}
+	},
+	"border-red-500": {
+		"style": {
+			"--tw-border-opacity": 1,
+			"borderTopColor": "rgb(239 68 68 / var(--tw-border-opacity))",
+			"borderRightColor": "rgb(239 68 68 / var(--tw-border-opacity))",
+			"borderBottomColor": "rgb(239 68 68 / var(--tw-border-opacity))",
+			"borderLeftColor": "rgb(239 68 68 / var(--tw-border-opacity))"
 		}
 	},
 	"bg-neutral-100": {
@@ -388,6 +481,14 @@
 		"style": {
 			"--tw-bg-opacity": 1,
 			"backgroundColor": "rgb(30 41 59 / var(--tw-bg-opacity))"
+		}
+	},
+	"p-4": {
+		"style": {
+			"paddingTop": 16,
+			"paddingRight": 16,
+			"paddingBottom": 16,
+			"paddingLeft": 16
 		}
 	},
 	"py-6": {
@@ -495,6 +596,11 @@
 			"paddingLeft": 16
 		}
 	},
+	"pb-1": {
+		"style": {
+			"paddingBottom": 4
+		}
+	},
 	"text-left": {
 		"style": {
 			"textAlign": "left"
@@ -559,6 +665,11 @@
 	"font-light": {
 		"style": {
 			"fontWeight": "300"
+		}
+	},
+	"uppercase": {
+		"style": {
+			"textTransform": "uppercase"
 		}
 	},
 	"italic": {
@@ -650,6 +761,12 @@
 	"opacity-50": {
 		"style": {
 			"opacity": 0.5
+		}
+	},
+	"placeholder:text-white::placeholder": {
+		"style": {
+			"--tw-text-opacity": 1,
+			"color": "rgb(255 255 255 / var(--tw-text-opacity))"
 		}
 	}
 }
