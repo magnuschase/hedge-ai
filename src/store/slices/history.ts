@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { EvaluationEntry } from '../../../functions/src/shared/EvaluationEntry.interface'
+import { EvaluationEntryWithId } from '../../../functions/src/shared/EvaluationEntry.interface'
 
 interface HistoryState {
-	evaluations: EvaluationEntry[]
+	evaluations: EvaluationEntryWithId[]
 }
 
 const initialState: HistoryState = {
@@ -13,7 +13,7 @@ export const historySlice = createSlice({
   name: 'history',
   initialState,
   reducers: {
-    setEvaluations: (state, action: PayloadAction<EvaluationEntry[]>) => {
+    setEvaluations: (state, action: PayloadAction<EvaluationEntryWithId[]>) => {
       state.evaluations = action.payload
     }
   }

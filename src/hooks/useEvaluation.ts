@@ -1,21 +1,30 @@
-import { getFirestore, doc, setDoc } from 'firebase/firestore'
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { getFirestore, doc, setDoc, deleteDoc } from 'firebase/firestore'
+import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import 'react-native-get-random-values'
 import { v4 as uuidv4 } from 'uuid'
 import { Status } from '../../functions/src/shared/Status.enum'
 import { RootState } from '../store'
+import { EvaluationEntryWithId } from '../../functions/src/shared/EvaluationEntry.interface'
 
 type AddEvaluationPayload = {
 	type: 'local' | 'custom',
 	model: string,
+	modelName: string,
 	imageUrl: string,
+}
+
+type RemoveEvaluationPayload = {
+	id: string,
+	imageUrl: string,
+	evaluatedImageUrl?: string
 }
 
 type UseEvaluation = {
 	uploadImage: (uri: string) => Promise<string>
-	addEvaluation: (data: AddEvaluationPayload) => Promise<void>
+	addEvaluation: (data: AddEvaluationPayload) => Promise<void>,
+	removeEvaluation: (item: RemoveEvaluationPayload) => Promise<void>
 }
 
 export const useEvaluation = (): UseEvaluation => {
@@ -55,7 +64,8 @@ export const useEvaluation = (): UseEvaluation => {
 	const addEvaluation = useCallback(async ({
 		type,
 		model,
-		imageUrl
+		imageUrl,
+		modelName
 	}: AddEvaluationPayload) => {
 		if (!firebaseUser) throw new Error('User not logged in')
 		
@@ -64,6 +74,7 @@ export const useEvaluation = (): UseEvaluation => {
 		const evaluationRef = doc(db, `users/${firebaseUser.uid}/evaluations/${uuidv4()}`)
 
 		await setDoc(evaluationRef, {
+			modelName,
 			type,
 			model,
 			imageUrl: uploadedImageUrl,
@@ -72,5 +83,25 @@ export const useEvaluation = (): UseEvaluation => {
 		})
 	}, [])
 
-	return { uploadImage, addEvaluation }
+	const removeEvaluation = useCallback(async ({
+		imageUrl,
+		evaluatedImageUrl,
+		id
+	}: RemoveEvaluationPayload) => {
+		if (!firebaseUser) throw new Error('User not logged in')
+
+		const imageRef = ref(bucket, imageUrl)
+		
+		if (evaluatedImageUrl) {
+			const evaluatedImageRef = ref(bucket, evaluatedImageUrl)
+			await deleteObject(evaluatedImageRef)
+		}
+
+		await deleteObject(imageRef)
+
+		const evaluationRef = doc(db, `users/${firebaseUser.uid}/evaluations/${id}`)
+		await deleteDoc(evaluationRef)
+	}, [])
+
+	return { uploadImage, addEvaluation, removeEvaluation }
 }
