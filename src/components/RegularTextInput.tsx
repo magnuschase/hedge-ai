@@ -1,5 +1,12 @@
-import { View, TextInput } from 'react-native'
-import React from 'react'
+import {
+	View,
+	TextInput,
+	StyleProp,
+	ViewStyle,
+	NativeSyntheticEvent,
+	TextInputKeyPressEventData
+} from 'react-native'
+import React, { useMemo } from 'react'
 import { SvgProps } from 'react-native-svg'
 import { useTailwind } from 'tailwind-rn'
 import getColor from '../helpers/getColor'
@@ -10,19 +17,29 @@ type TextInputPayload = {
 	placeholder?: string,
 	value: string,
 	onChangeText: (text: string) => void,
-	required: boolean,
+	required?: boolean,
 	charLimit?: number,
 	icon?: React.FC<SvgProps>,
-	label?: string
+	label?: string,
+	style?: StyleProp<ViewStyle>,
+	numLines?: number,
+	onKeyPress?: (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => void,
+	onPressOut?: () => void,
+	onSubmit?: () => void
 }
 const RegularTextInput: React.FC<TextInputPayload> = ({
 	placeholder,
 	value,
 	onChangeText,
-	required,
+	required = false,
 	charLimit,
 	icon: IconComponent,
-	label
+	label,
+	style,
+	numLines,
+	onKeyPress,
+	onPressOut,
+	onSubmit
 }) => {
 	const tailwind = useTailwind()
 
@@ -34,10 +51,16 @@ const RegularTextInput: React.FC<TextInputPayload> = ({
 		onChangeText(text)
 	}
 
+	const isMultiline = useMemo(() => {
+		if (!numLines || numLines === 1) return undefined
+		return true
+	}, [numLines])
+
 	return (
 		<View
 			style={[
 				tailwind('flex-grow flex justify-center w-full'),
+				style
 			]}
 		>
 			<View
@@ -84,10 +107,16 @@ const RegularTextInput: React.FC<TextInputPayload> = ({
 					value={value}
 					onChangeText={onChange}
 					style={[
-						tailwind(`mt-1 border border-slate-800 font-light w-full rounded-md p-4 text-slate-300 bg-slate-800`),
+						tailwind(`mt-1 border border-slate-800 font-light w-full rounded-md p-4 pr-12 text-slate-300 bg-slate-800`),
 						required && value.length === 0 && tailwind('border-red-500'),
 					]}
+					returnKeyType='done'
 					placeholderTextColor={getColor('slate', 500)}
+					multiline={isMultiline}
+					numberOfLines={isMultiline && numLines}
+					onSubmitEditing={onSubmit}
+					onKeyPress={onKeyPress}
+					onPressOut={onPressOut}
 				/>
 			</View>
 		</View>

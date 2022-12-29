@@ -1,14 +1,20 @@
-import { View, Text } from 'react-native'
+import { View, TouchableOpacity, StyleProp, ViewStyle } from 'react-native'
 import React, { useMemo } from 'react'
 import { useTailwind } from 'tailwind-rn'
 import RegularText from './texts/RegularText'
 import { COLOR_GEN_DARK, COLOR_GEN_LIGHT } from '../helpers/colorsGenerator'
 
 type LabelMapPayload = {
-	labelMap: string[]
+	labelMap: string[],
+	onElementPress?: (index: number) => void,
+	style?: StyleProp<ViewStyle>
 }
 
-const LabelMap: React.FC<LabelMapPayload> = ({labelMap}) => {
+const LabelMap: React.FC<LabelMapPayload> = ({
+	labelMap,
+	onElementPress,
+	style
+}) => {
 	const tailwind = useTailwind()
 
 	const cutLabelMap = useMemo(() => {
@@ -19,16 +25,18 @@ const LabelMap: React.FC<LabelMapPayload> = ({labelMap}) => {
 	return (
 		<View
 			style={[
-				tailwind('w-full flex flex-row flex-wrap justify-start pt-2')
+				tailwind('w-full flex flex-row flex-wrap justify-start pt-2'),
+				style
 			]}
 		>
 			{cutLabelMap.map((label, index) => (
-				<View
+				<TouchableOpacity
 					style={[
 						tailwind('flex items-center justify-center mx-2 my-2 rounded-full'),
 						{ backgroundColor: COLOR_GEN_DARK.hex(label) }
 					]}
 					key={label}
+					onPress={onElementPress ? () => onElementPress(index) : undefined}
 				>
 					<RegularText
 						key={index}
@@ -39,7 +47,7 @@ const LabelMap: React.FC<LabelMapPayload> = ({labelMap}) => {
 					>
 						{label}
 					</RegularText>
-				</View>
+				</TouchableOpacity>
 			))}
 		</View>			
 	)
