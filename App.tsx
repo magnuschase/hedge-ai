@@ -98,35 +98,40 @@ const App: React.FC = () => {
 							name='CustomModel'
 							component={CustomModelScreen}
 							options={{
-								title: 'Edit custom model'
+								title: 'Edit custom model',
+								animationEnabled: false
 							}}
 						/>
 						<Stack.Screen
 							name='History'
 							component={HistoryScreen}
 							options={{
-								title: 'Evaluation history'
+								title: 'Evaluation history',
+								animationEnabled: false
 							}}
 						/>
 						<Stack.Screen
 							name='Info'
 							component={InfoScreen}
 							options={{
-								title: 'Informations'
+								title: 'Informations',
+								animationEnabled: false
 							}}
 						/>
 						<Stack.Screen
 							name='CameraScreen'
 							component={CameraScreen}
 							options={{
-								title: 'Camera'
+								title: 'Camera',
+								animationEnabled: false
 							}}
 						/>
 						<Stack.Screen
 							name='UploadScreen'
 							component={UploadScreen}
 							options={{
-								title: 'Upload file'
+								title: 'Upload file',
+								animationEnabled: false
 							}}
 						/>
 					</Stack.Navigator>
