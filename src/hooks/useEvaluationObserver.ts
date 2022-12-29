@@ -5,7 +5,7 @@ import { RootState, useAppDispatch } from "../store"
 import { setEvaluations } from "../store/slices/history"
 import { EvaluationEntry } from "../../functions/src/shared/EvaluationEntry.interface"
 
-export const useHistoryUpdates = () => {
+export const useEvaluationObserver = () => {
 	const { firebaseUser } = useSelector((state: RootState) => state.user)
 	const dispatch = useAppDispatch()
 	const db = getFirestore()

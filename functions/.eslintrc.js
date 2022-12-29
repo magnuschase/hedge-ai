@@ -31,6 +31,7 @@ module.exports = {
 		'no-tabs': 'off',
 		'indent': ['error', 'tab'],
 		'comma-dangle': ['error', 'never'],
-		'quotes': ['error', 'single']
+		'quotes': ['error', 'single'],
+		'@typescript-eslint/no-var-requires': 'off'
 	}
 }

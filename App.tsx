@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react'
 import { useSelector } from 'react-redux'
+import Toast from 'react-native-toast-message'
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { Provider } from 'react-redux'
@@ -19,7 +20,7 @@ import utilities from './tailwind.json'
 import HomeScreen from './src/screens/HomeScreen'
 import store, { RootState } from './src/store'
 import { useUserObserver } from './src/hooks/useUserObserver'
-import { useHistoryUpdates } from './src/hooks/useHistoryUpdates'
+import { useEvaluationObserver } from './src/hooks/useEvaluationObserver'
 import GetStartedScreen from './src/screens/GetStartedScreen'
 import CustomModelScreen from './src/screens/CustomModelScreen'
 import HistoryScreen from './src/screens/HistoryScreen'
@@ -35,7 +36,7 @@ SplashScreen.preventAutoHideAsync()
 const App: React.FC = () => {
 	const { firebaseUser } = useSelector((state: RootState) => state.user)
 	const { firebaseLoaded } = useUserObserver()
-	useHistoryUpdates()
+	useEvaluationObserver()
 
 	const NavigationTheme = {
 		...DefaultTheme,
@@ -129,6 +130,9 @@ const App: React.FC = () => {
 							}}
 						/>
 					</Stack.Navigator>
+					<Toast 
+						topOffset={50}
+					/>
 					<BottomNavigation/>
 				</NavigationContainer>
 			</BottomSheetModalProvider>

@@ -5,7 +5,8 @@ export const ASL: ModelConfig = {
 	description: `This model recognizes letters in the ASL Alphabet.
 It was trained using dataset made by a data scientist David Lee, which contains 1728 images and 26 classes.
 	`,
-	fileName: 'ASL.ptl',
+	model: 'asl.pt',
+	type: 'local',
 	labelMap: [
 		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
 		"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
@@ -15,7 +16,8 @@ It was trained using dataset made by a data scientist David Lee, which contains 
 export const YOLO: ModelConfig = {
 	name: "YOLO",
 	description: "YOLOv5 🚀 is the world's most loved vision AI, representing Ultralytics open-source research into future vision AI methods, incorporating lessons learned and best practices evolved over thousands of hours of research and development.",
-	fileName: 'best.ptl',
+	model: 'yolov5s.pt',
+	type: 'local',
 	labelMap: [
 		"person",
 		"bicycle",
@@ -103,7 +105,8 @@ export const YOLO: ModelConfig = {
 export const Hedge: ModelConfig = {
 	name: "Hedge",
 	description: "Simple model for hedgehog race recognition. Because why not! 🦔",
-	fileName: 'hedge.ptl',
+	model: 'hedge.ptl',
+	type: 'local',
 	labelMap: [
 		"pygmy", "european", "african black"
 	]
@@ -111,8 +114,9 @@ export const Hedge: ModelConfig = {
 
 export const Custom: ModelConfig = {
 	name: "Custom",
-	description: "",
-	fileName: 'ASL.ptl',
+	description: '',
+	model: '',
+	type: 'custom',
 	labelMap: [
 		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
 		"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",

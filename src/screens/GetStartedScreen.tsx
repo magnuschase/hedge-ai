@@ -13,6 +13,8 @@ import HedgehogIcon from "../components/icons/HedgehogIcon"
 import { DefaultButton } from "../components/DefaultButton"
 import RegularText from "../components/texts/RegularText"
 import getColor from "../helpers/getColor"
+import { NeonButton } from "../components/NeonButton"
+import DoorIcon from "../components/icons/DoorIcon"
 
 const GetStartedScreen: React.FC = () => {
 	const tailwind = useTailwind()
@@ -94,10 +96,12 @@ const GetStartedScreen: React.FC = () => {
 					
 				</MotiView>
 				
-				<DefaultButton
+				<NeonButton
+					icon={DoorIcon}
 					text="Get Started"
 					onPress={handleGetStartedPress}
 					isLoading={isLoading}
+					color='sky'
 					style={[tailwind('mt-24')]}
 				/>
 			</SafeAreaView>

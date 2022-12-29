@@ -1,7 +1,7 @@
 export interface ModelConfig {
-	name: string,
-	description: string,
-	fileName?: string, // for models stored locally
-	path?: string, // for models stored on GCS
+	name: string
+	description: string
+	model: string // Local model name / URL to custom model
+	type: 'local' | 'custom' // Type of model
 	labelMap: string[]
 }

@@ -2,7 +2,6 @@ import React from 'react'
 import {
 	TouchableOpacity,
 	ActivityIndicator,
-	Text,
 	StyleProp,
 	ViewStyle
 } from 'react-native'
@@ -19,10 +18,10 @@ type NeonButtonPayload = {
 	isDisabled?: boolean,
 	style?: StyleProp<ViewStyle>,
 	color: string,
-	icon: React.FC<SvgProps>,
+	icon: React.FC<SvgProps>
 }
 
-export const NeonModalButton: React.FC<NeonButtonPayload> = ({
+export const NeonButton: React.FC<NeonButtonPayload> = ({
 	text,
 	onPress,
 	isLoading = false,
@@ -32,48 +31,56 @@ export const NeonModalButton: React.FC<NeonButtonPayload> = ({
 	icon: IconComponent,
 }) => {
 	const tailwind = useTailwind()
-	const { close } = useBottomSheet()
-
-	const colorHex = getColor(color, 500)
-
-	const handlePress = () => {
-		onPress()
-		close()
-	}
+	const colorHex = getColor(color, 600)
 
 	return (
 		<TouchableOpacity
 			style={[
-				tailwind('mt-4 w-full py-3 px-4 border-2 rounded-lg flex flex-row justify-between'),
+				tailwind('mt-4 w-full py-3 px-4 border-2 rounded-lg flex flex-row items-center justify-between'),
 				{
 					shadowOpacity: 1,
 					borderColor: colorHex,
 					shadowColor: colorHex,
 					shadowRadius: 5,
 				},
-				isLoading && tailwind('opacity-50'),
+				(isLoading || isDisabled) && tailwind('opacity-50'),
 				style
 			]}
 			disabled={isDisabled || isLoading}
-			onPress={handlePress}
+			onPress={onPress}
 		>
-			<RegularText
-				style={[
-					tailwind('text-left text-xl font-light'),
-					{ color: colorHex }
-				]}
-			>
-				{
-					isLoading ?
-					<ActivityIndicator
-						size="large"
+			{
+				isLoading ? (
+					<ActivityIndicator 
+						size={28}
 						color={colorHex}
-					/> :
-					text
-				}
-			</RegularText>
+					/>
+				) : (
+					<RegularText
+						style={[
+							tailwind('text-right text-xl font-light'),
+							{ color: colorHex }
+						]}
+					>
+						{text}
+					</RegularText>
+				)
+			}
 
 			<IconComponent width={24} height={24} fill={colorHex} />
 		</TouchableOpacity>
+	)
+}
+
+export const NeonModalButton: React.FC<NeonButtonPayload> = (props) => {
+	const { close } = useBottomSheet()
+
+	const handlePress = () => {
+		props.onPress()
+		close()
+	}
+
+	return (
+		<NeonButton {...props} onPress={handlePress} />
 	)
 }

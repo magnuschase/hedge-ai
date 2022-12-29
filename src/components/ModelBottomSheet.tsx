@@ -4,7 +4,7 @@ import { ModelConfig } from '../../functions/src/shared/ModelConfig.interface'
 import RegularText from './texts/RegularText'
 import GorhomBottomModal from './GorhomBottomModal'
 import LabelMap from './LabelMap'
-import { NeonModalButton } from './NeonModalButton'
+import { NeonModalButton } from './NeonButton'
 import CameraIcon from './icons/CameraIcon'
 import UploadIcon from './icons/UploadIcon'
 import { useNavigation } from '@react-navigation/native'
@@ -19,8 +19,8 @@ const ModelBottomSheet: React.FC<ModelBottomSheetPayload> = ({
 	onDismiss,
 	name,
 	description,
-	fileName,
-	path,
+	model,
+	type,
 	labelMap
 }) => {
 	const tailwind = useTailwind()
@@ -33,8 +33,8 @@ const ModelBottomSheet: React.FC<ModelBottomSheetPayload> = ({
 				modelConfig: {
 					name,
 					description,
-					fileName,
-					path,
+					model,
+					type,
 					labelMap
 				}
 			} as never
