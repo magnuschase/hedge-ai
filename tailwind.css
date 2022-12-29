@@ -274,6 +274,10 @@
   padding-top: 2rem
 }
 
+.pt-1 {
+  padding-top: 0.25rem
+}
+
 .text-left {
   text-align: left
 }
@@ -370,6 +374,11 @@
 .text-sky-500 {
   --tw-text-opacity: 1;
   color: rgb(14 165 233 / var(--tw-text-opacity))
+}
+
+.text-rose-500 {
+  --tw-text-opacity: 1;
+  color: rgb(244 63 94 / var(--tw-text-opacity))
 }
 
 .underline {
