@@ -72,7 +72,7 @@ const ModelCard: React.FC<ModelCardPayload> = ({
 						{ color: darkerColor }
 					]}
 				>
-					{ name }
+					{ name === '' ? 'Custom' : name }
 				</RegularText>	
 			</TouchableOpacity>
 			
