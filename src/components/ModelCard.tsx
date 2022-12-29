@@ -15,8 +15,8 @@ interface ModelCardPayload extends ModelConfig {
 const ModelCard: React.FC<ModelCardPayload> = ({
 	name,
 	description,
-	fileName,
-	path,
+	model,
+	type,
 	labelMap,
 	IconComponent,
 	index
@@ -81,8 +81,8 @@ const ModelCard: React.FC<ModelCardPayload> = ({
 				onDismiss={() => setIsVisible(false)}
 				name={name}
 				description={description}
-				fileName={fileName}
-				path={path}
+				model={model}
+				type={type}
 				labelMap={labelMap}
 			/>
 		</>

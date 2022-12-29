@@ -19,8 +19,8 @@ const ModelBottomSheet: React.FC<ModelBottomSheetPayload> = ({
 	onDismiss,
 	name,
 	description,
-	fileName,
-	path,
+	model,
+	type,
 	labelMap
 }) => {
 	const tailwind = useTailwind()
@@ -33,8 +33,8 @@ const ModelBottomSheet: React.FC<ModelBottomSheetPayload> = ({
 				modelConfig: {
 					name,
 					description,
-					fileName,
-					path,
+					model,
+					type,
 					labelMap
 				}
 			} as never
