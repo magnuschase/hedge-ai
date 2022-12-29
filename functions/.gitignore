@@ -15,3 +15,4 @@ firebase-debug.log
 
 # Secrets
 .runtimeconfig.json
+service_account.json
