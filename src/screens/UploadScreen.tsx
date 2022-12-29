@@ -46,7 +46,8 @@ const UploadScreen: React.FC<any> = () => {
 			await addEvaluation({
 				imageUrl: image,
 				type: modelConfig.type,
-				model: modelConfig.model
+				model: modelConfig.model,
+				modelName: modelConfig.name
 			})
 			Toast.show({
 				type: 'success',

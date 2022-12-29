@@ -10,6 +10,7 @@ import { RootState } from '../store'
 type AddEvaluationPayload = {
 	type: 'local' | 'custom',
 	model: string,
+	modelName: string,
 	imageUrl: string,
 }
 
@@ -55,7 +56,8 @@ export const useEvaluation = (): UseEvaluation => {
 	const addEvaluation = useCallback(async ({
 		type,
 		model,
-		imageUrl
+		imageUrl,
+		modelName
 	}: AddEvaluationPayload) => {
 		if (!firebaseUser) throw new Error('User not logged in')
 		
@@ -64,6 +66,7 @@ export const useEvaluation = (): UseEvaluation => {
 		const evaluationRef = doc(db, `users/${firebaseUser.uid}/evaluations/${uuidv4()}`)
 
 		await setDoc(evaluationRef, {
+			modelName,
 			type,
 			model,
 			imageUrl: uploadedImageUrl,
