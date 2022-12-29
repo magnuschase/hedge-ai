@@ -71,8 +71,8 @@ export const createUserProfile = functions.auth
 	.onCreate(async (user: UserRecord) => {
 		const userData = {
 			customModel: {
-				name: '',
-				description: '',
+				name: 'Custom',
+				description: 'Custom model you trained yourself',
 				labelMap: [],
 				model: '',
 				type: 'custom'
