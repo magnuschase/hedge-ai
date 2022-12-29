@@ -112,15 +112,4 @@ export const Hedge: ModelConfig = {
 	]
 }
 
-export const Custom: ModelConfig = {
-	name: "Custom",
-	description: '',
-	model: '',
-	type: 'custom',
-	labelMap: [
-		"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", 
-		"N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
-	]
-}
-
-export const CONFIG_ARR = [ASL, YOLO, Hedge, Custom]
+export const CONFIG_ARR = [ASL, YOLO, Hedge]
