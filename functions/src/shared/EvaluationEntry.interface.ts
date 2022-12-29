@@ -9,3 +9,7 @@ export interface EvaluationEntry {
 	evaluatedImageUrl?: string // Path to evaluated image file stored on GCS
 	status: Status // evaluation status
 }
+
+export interface EvaluationEntryWithId extends EvaluationEntry {
+	id: string
+}
