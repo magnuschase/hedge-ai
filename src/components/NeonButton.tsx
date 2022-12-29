@@ -9,6 +9,7 @@ import { SvgProps } from 'react-native-svg'
 import { useTailwind } from "tailwind-rn"
 import getColor from "../helpers/getColor"
 import RegularText from './texts/RegularText'
+import { useBottomSheet } from '@gorhom/bottom-sheet'
 
 type NeonButtonPayload = {
 	text: string,
@@ -17,7 +18,7 @@ type NeonButtonPayload = {
 	isDisabled?: boolean,
 	style?: StyleProp<ViewStyle>,
 	color: string,
-	icon: React.FC<SvgProps>,
+	icon: React.FC<SvgProps>
 }
 
 export const NeonButton: React.FC<NeonButtonPayload> = ({
@@ -68,5 +69,18 @@ export const NeonButton: React.FC<NeonButtonPayload> = ({
 
 			<IconComponent width={24} height={24} fill={colorHex} />
 		</TouchableOpacity>
+	)
+}
+
+export const NeonModalButton: React.FC<NeonButtonPayload> = (props) => {
+	const { close } = useBottomSheet()
+
+	const handlePress = () => {
+		props.onPress()
+		close()
+	}
+
+	return (
+		<NeonButton {...props} onPress={handlePress} />
 	)
 }
