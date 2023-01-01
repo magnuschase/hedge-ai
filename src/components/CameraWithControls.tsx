@@ -29,7 +29,9 @@ const CameraWithControls: React.FC<CameraPayload> = ({ setUri }) => {
 	const handleCapture = useCallback(async () => {
 		if (!cameraRef.current) return
 		try {
-			const { uri } = await cameraRef.current.takePictureAsync()
+			const { uri } = await cameraRef.current.takePictureAsync({
+				quality: 0.2
+			})
 			setUri(uri)
 		}	catch (error) {
 			Toast.show({
