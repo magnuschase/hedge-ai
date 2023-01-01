@@ -46,7 +46,7 @@ const HistoryScreen: React.FC = () => {
 	})
 
 	return (
-		<View style={[tailwind('px-6')]}>
+		<View>
 			<SafeAreaView>
 				<FlatList
 					data={sortedEvaluations}
@@ -54,6 +54,7 @@ const HistoryScreen: React.FC = () => {
 					renderItem={renderEvaluationEntry}
 					numColumns={1}
 					ListFooterComponent={<View style={[tailwind('h-48')]} />}
+					style={[tailwind('px-6')]}
 				/>
 			</SafeAreaView>
 		</View>
