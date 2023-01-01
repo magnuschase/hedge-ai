@@ -23,6 +23,7 @@ type TextInputPayload = {
 	label?: string,
 	style?: StyleProp<ViewStyle>,
 	numLines?: number,
+	isInvalid?: boolean,
 	onKeyPress?: (e: NativeSyntheticEvent<TextInputKeyPressEventData>) => void,
 	onPressOut?: () => void,
 	onSubmit?: () => void
@@ -37,6 +38,7 @@ const RegularTextInput: React.FC<TextInputPayload> = ({
 	label,
 	style,
 	numLines,
+	isInvalid = false,
 	onKeyPress,
 	onPressOut,
 	onSubmit
@@ -56,6 +58,13 @@ const RegularTextInput: React.FC<TextInputPayload> = ({
 		return true
 	}, [numLines])
 
+	const isValid = useMemo(() => {
+		if (!required) return true
+		if (isInvalid) return false
+		if (value.length > 0) return true
+		return false
+	}, [isInvalid, value, required])
+	
 	return (
 		<View
 			style={[
@@ -96,7 +105,7 @@ const RegularTextInput: React.FC<TextInputPayload> = ({
 							<IconComponent
 								width={22}
 								height={22}
-								fill={getColor(required && value.length === 0 ? 'red' : 'slate', 500)}
+								fill={getColor(isValid ? 'slate' : 'red', 500)}
 							/>
 						</View>
 					)
@@ -108,8 +117,9 @@ const RegularTextInput: React.FC<TextInputPayload> = ({
 					onChangeText={onChange}
 					style={[
 						tailwind(`mt-1 border border-slate-800 font-light w-full rounded-md p-4 pr-12 text-slate-300 bg-slate-800`),
-						required && value.length === 0 && tailwind('border-red-500'),
+						!isValid && tailwind('border-red-500'),
 					]}
+					autoCapitalize='none'
 					returnKeyType='done'
 					placeholderTextColor={getColor('slate', 500)}
 					multiline={isMultiline}
