@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { SafeAreaView } from "react-native-safe-area-context"
 import { FlatList, View } from "react-native"
 import dayjs from 'dayjs'
@@ -6,12 +6,16 @@ import { useSelector } from "react-redux"
 import { useTailwind } from "tailwind-rn"
 import { RootState } from "../store"
 import EvaluationItem from "../components/EvaluationItem"
-import { EvaluationEntry, EvaluationEntryWithId } from "../../functions/src/shared/EvaluationEntry.interface"
+import { EvaluationEntryWithId } from "../../functions/src/shared/EvaluationEntry.interface"
 import RegularText from "../components/texts/RegularText"
 
 const HistoryScreen: React.FC = () => {
 	const tailwind = useTailwind()
 	const { evaluations } = useSelector((state: RootState) => state.history)
+
+	const sortedEvaluations = useMemo(() =>
+		[...evaluations].sort((a, b) => a.timestamp - b.timestamp),
+	[evaluations])
 
 	const renderEvaluationEntry = (({
 			item,
@@ -45,7 +49,7 @@ const HistoryScreen: React.FC = () => {
 		<View style={[tailwind('px-6')]}>
 			<SafeAreaView>
 				<FlatList
-					data={evaluations}
+					data={sortedEvaluations}
 					keyExtractor={(item) => item.id}
 					renderItem={renderEvaluationEntry}
 					numColumns={1}
