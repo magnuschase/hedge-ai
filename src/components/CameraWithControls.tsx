@@ -15,7 +15,7 @@ type CameraPayload = {
 const CameraWithControls: React.FC<CameraPayload> = ({ setUri }) => {
 	const tailwind = useTailwind()
 	const cameraRef = useRef<Camera>(null)
-	const [type, setType] = useState<CameraType>(CameraType.front)
+	const [type, setType] = useState<CameraType>(CameraType.back)
 
 
 	const switchType = () => {
