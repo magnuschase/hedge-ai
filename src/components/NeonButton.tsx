@@ -5,6 +5,7 @@ import {
 	StyleProp,
 	ViewStyle
 } from 'react-native'
+import * as Haptics from 'expo-haptics'
 import { SvgProps } from 'react-native-svg'
 import { useTailwind } from "tailwind-rn"
 import getColor from "../helpers/getColor"
@@ -33,6 +34,11 @@ export const NeonButton: React.FC<NeonButtonPayload> = ({
 	const tailwind = useTailwind()
 	const colorHex = getColor(color, 600)
 
+	const handlePress = () => {
+		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
+		onPress()
+	}
+
 	return (
 		<TouchableOpacity
 			style={[
@@ -47,7 +53,7 @@ export const NeonButton: React.FC<NeonButtonPayload> = ({
 				style
 			]}
 			disabled={isDisabled || isLoading}
-			onPress={onPress}
+			onPress={handlePress}
 		>
 			{
 				isLoading ? (
@@ -77,6 +83,7 @@ export const NeonModalButton: React.FC<NeonButtonPayload> = (props) => {
 
 	const handlePress = () => {
 		props.onPress()
+		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium)
 		close()
 	}
 

@@ -1,18 +1,17 @@
 import { getFirestore, doc, setDoc, deleteDoc } from 'firebase/firestore'
-import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage'
+import { getStorage, ref, getDownloadURL, deleteObject, uploadBytesResumable } from 'firebase/storage'
 import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import 'react-native-get-random-values'
 import { v4 as uuidv4 } from 'uuid'
 import { Status } from '../../functions/src/shared/Status.enum'
 import { RootState } from '../store'
-import { EvaluationEntryWithId } from '../../functions/src/shared/EvaluationEntry.interface'
 
 type AddEvaluationPayload = {
 	type: 'local' | 'custom',
 	model: string,
 	modelName: string,
-	imageUrl: string,
+	imageUrl: string
 }
 
 type RemoveEvaluationPayload = {
@@ -35,7 +34,6 @@ export const useEvaluation = (): UseEvaluation => {
 
 	const uploadImage = useCallback(async (uri: string) => {
 		if (!firebaseUser) throw new Error('User not logged in')
-
 		// Explanation as to why we need to use XMLHttpRequest instead of fetch/axios:
 		// https://github.com/expo/expo/issues/2402#issuecomment-443726662
 		const blob = (await new Promise((resolve, reject) => {
@@ -53,7 +51,7 @@ export const useEvaluation = (): UseEvaluation => {
 		})) as any
 
 		const fileRef = ref(bucket, `user_imgs/${firebaseUser.uid}/${uuidv4()}`)
-		await uploadBytes(fileRef, blob)
+		await uploadBytesResumable(fileRef, blob)
 
 		// We're done with the blob, close and release it
 		blob.close() 

@@ -2,6 +2,7 @@ import React, { useMemo } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { SvgProps } from "react-native-svg"
 import { useTailwind } from 'tailwind-rn'
+import * as Haptics from 'expo-haptics'
 import { useNavigation, useNavigationState } from '@react-navigation/native'
 import RegularText from './texts/RegularText'
 import getColor from '../helpers/getColor'
@@ -24,6 +25,7 @@ const NavButton: React.FC<NavButtonPayload> = ({
 	const active = useMemo(() => currentRoute === screenName, [currentRoute])
 
 	const onPress = () => {
+		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
 		reset({
 			index: 0,
 			routes: [

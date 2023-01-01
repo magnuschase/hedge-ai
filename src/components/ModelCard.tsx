@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react'
 import { useTailwind } from 'tailwind-rn'
 import { SvgProps } from 'react-native-svg'
+import * as Haptics from 'expo-haptics'
 import RegularText from './texts/RegularText'
 import { ModelConfig } from '../../functions/src/shared/ModelConfig.interface'
 import getColor from '../helpers/getColor'
@@ -46,10 +47,15 @@ const ModelCard: React.FC<ModelCardPayload> = ({
 		]
 	}, [color])
 
+	const handlePress = () => {
+		Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy)
+		setIsVisible(!isVisible)
+	}
+
 	return (
 		<>
 			<TouchableOpacity
-				onPress={() => setIsVisible(!isVisible)}
+				onPress={handlePress}
 				style={[
 					tailwind(`
 						mb-4 rounded-lg w-[40%] flex flex-col items-center

@@ -92,7 +92,7 @@ const EvaluationBottomSheet: React.FC<EvaluationBottomSheetPayload> = ({
 					status === Status.SUCCESS && 
 						<RegularText
 							style={[
-								tailwind('pt-4 text-sm text-center text-neutral-500 font-bold pb-2')
+								tailwind('pt-4 text-sm text-center text-neutral-500 font-bold')
 							]}
 						>
 							{displayEvaluation ? 'Evaluated image' : 'Source image'} (click to switch source)
@@ -101,7 +101,7 @@ const EvaluationBottomSheet: React.FC<EvaluationBottomSheetPayload> = ({
 				<Image
 					source={{ uri: displayEvaluation ? evaluatedImageUrl || imageUrl : imageUrl }}
 					style={[
-						tailwind('w-full rounded-lg'),
+						tailwind('w-full rounded-lg mt-2'),
 						{ aspectRatio: 1 }
 					]}
 				/>
