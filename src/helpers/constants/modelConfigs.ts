@@ -105,10 +105,10 @@ export const YOLO: ModelConfig = {
 export const Hedge: ModelConfig = {
 	name: "Hedge",
 	description: "Simple model for hedgehog race recognition. Because why not! 🦔",
-	model: 'hedge.ptl',
+	model: 'hedge.pt',
 	type: 'local',
 	labelMap: [
-		"pygmy", "european", "african black"
+		"pygmy", "european", "albino"
 	]
 }
 
